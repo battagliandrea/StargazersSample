@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/orange</color>
-    <color name="colorPrimaryDark">@color/orange_dark</color>
-    <color name="colorAccent">@color/black</color>
+    <color name="colorPrimary">@color/blue_gray</color>
+    <color name="colorPrimaryDark">@color/blue_gray_dark</color>
+    <color name="colorAccent">@color/blue_gray_dark</color>
 
     <color name="white">#ffffff</color>
 
     <color name="black">#000000</color>
     <color name="black_overlay">#80000000</color>
 
-    <color name="orange">#ffab00</color>
-    <color name="orange_dark">#c67c00</color>
+    <color name="blue_gray">#546e7a</color>
+    <color name="blue_gray_dark">#29434e</color>
+    <color name="blue_gray_light">#819ca9</color>
 
-    <color name="yellow">#ffdd4b</color>
 </resources>

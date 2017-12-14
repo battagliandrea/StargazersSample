@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kotlin MVP</string>
+    <string name="app_name">Stargazers Sample</string>
 
     <!--SPLASH-->
     <string name="splash_title">Splash View</string>
