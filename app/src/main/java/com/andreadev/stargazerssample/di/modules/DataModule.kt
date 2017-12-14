@@ -16,6 +16,6 @@ open class DataModule() {
     @Provides
     @Singleton
     fun provideSharedPreferences(@AppContext context: Context): SharedPreferences {
-        return context.getSharedPreferences("kotlinmvp-prefs", Context.MODE_PRIVATE)//:TODO change shared pref key
+        return context.getSharedPreferences("stargazerssample-prefs", Context.MODE_PRIVATE)
     }
 }

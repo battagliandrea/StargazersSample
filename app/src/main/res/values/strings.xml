@@ -2,7 +2,7 @@
     <string name="app_name">Stargazers Sample</string>
 
     <!--SPLASH-->
-    <string name="splash_title">Splash View</string>
+    <string name="splash_title">Stargazers</string>
 
     <!--HOME-->
     <string name="home_title">Home View</string>
