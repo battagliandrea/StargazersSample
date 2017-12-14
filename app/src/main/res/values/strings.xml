@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kotlin MVP</string>
+
+    <!--SPLASH-->
+    <string name="splash_title">Splash View</string>
+
+    <!--HOME-->
+    <string name="home_title">Home View</string>
+
+</resources>
