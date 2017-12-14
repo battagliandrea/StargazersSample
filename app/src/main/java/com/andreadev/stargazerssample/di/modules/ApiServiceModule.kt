@@ -2,7 +2,8 @@ package com.andreadev.stargazerssample.di.modules
 
 import android.content.Context
 import com.andreadev.stargazerssample.BuildConfig
-import com.andreadev.stargazerssample.api.AndreaDevApi
+import com.andreadev.stargazerssample.R
+import com.andreadev.stargazerssample.api.GithubApi
 import com.andreadev.stargazerssample.di.AppContext
 import dagger.Module
 import dagger.Provides
@@ -19,13 +20,9 @@ import javax.inject.Singleton
 @Module
 class ApiServiceModule {
 
-    companion object {
-        val BASE_URL = "https://swapi.co/"
-    }
-
     @Provides
     @Singleton
-    internal fun provideApi(@AppContext context: Context, httpClient: OkHttpClient, rxAdapter: RxJava2CallAdapterFactory, gsonConverterFactory: GsonConverterFactory): AndreaDevApi {
+    internal fun provideApi(@AppContext context: Context, httpClient: OkHttpClient, rxAdapter: RxJava2CallAdapterFactory, gsonConverterFactory: GsonConverterFactory): GithubApi {
 
         val logging = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
@@ -35,12 +32,12 @@ class ApiServiceModule {
         }
 
         val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(context.getString(R.string.base_uri))
                 .client(httpClient)
                 .addCallAdapterFactory(rxAdapter)
                 .addConverterFactory(gsonConverterFactory)
                 .build()
 
-        return retrofit.create(AndreaDevApi::class.java)
+        return retrofit.create(GithubApi::class.java)
     }
 }

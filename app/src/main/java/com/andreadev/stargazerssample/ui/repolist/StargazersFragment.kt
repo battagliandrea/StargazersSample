@@ -1,4 +1,4 @@
-package com.andreadev.stargazerssample.ui.home
+package com.andreadev.stargazerssample.ui.repolist
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -9,15 +9,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.andreadev.stargazerssample.App
 import com.andreadev.stargazerssample.R
+import com.andreadev.stargazerssample.data.models.Stargazer
 import com.andreadev.stargazerssample.di.components.DaggerPresenterComponent
 import com.andreadev.stargazerssample.ui.base.BaseMvpFragment
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_stargazers.*
 import javax.inject.Inject
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
+class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(), StargazersView {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -26,17 +27,17 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Inject
-    lateinit var homePresenter : HomePresenter
+    lateinit var stargazersPresenter: StargazersPresenter
 
     companion object Instance{
-        fun newIstance(): HomeFragment = HomeFragment()
+        fun newIstance(): StargazersFragment = StargazersFragment()
     }
 
     init {
         DaggerPresenterComponent.builder().appComponent(App.component).build().inject(this)
     }
 
-    override fun instancePresenter(): HomePresenter = homePresenter
+    override fun instancePresenter(): StargazersPresenter = stargazersPresenter
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,20 +46,32 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private lateinit var adapter : HomeAdapter
+    private lateinit var adapter : StargazersAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_home, container, false)
+        return inflater!!.inflate(R.layout.fragment_stargazers, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter.getList()
+        mPresenter.loadStargazersList()
 
-        adapter = HomeAdapter()
+        adapter = StargazersAdapter(activity, mAdapterListener)
         rv.layoutManager = LinearLayoutManager(activity)
         rv.adapter = adapter
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //                                              ADAPTER LISTENER
+    //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private val mAdapterListener: StargazersAdapter.StargazersAdapterListener = object: StargazersAdapter.StargazersAdapterListener{
+        override fun onBottomReached(position: Int) {
+            Toast.makeText(activity, "Sono alla fine", Toast.LENGTH_SHORT).show()
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +79,7 @@ class HomeFragment : BaseMvpFragment<HomeView, HomePresenter>(), HomeView {
     //                                                  VIEW
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    override fun rootListSuccess(data: List<String>) {
+    override fun loadData(data: List<Stargazer>) {
         Log.d(TAG, data.toString())
         adapter.setData(data)
     }

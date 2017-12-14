@@ -7,5 +7,5 @@ import com.andreadev.stargazerssample.ui.base.BaseMvpView
  */
 interface SplashView : BaseMvpView{
 
-    abstract fun navigateToHome()
+    fun navigateToHome()
 }

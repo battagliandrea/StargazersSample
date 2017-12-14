@@ -3,7 +3,7 @@
 
     <!--PROGRESS BAR THEME-->
     <style name="ProgressTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/blue_gray_light</item>
     </style>
 
 </resources>

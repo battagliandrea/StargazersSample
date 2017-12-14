@@ -1,9 +1,8 @@
 <resources>
 
-
     <dimen name="dimen_default">16dp</dimen>
-    <dimen name="dimen_default_small">8dp</dimen>
-    <dimen name="dimen_default_minimum">4dp</dimen>
+    <dimen name="dimen_default_half">8dp</dimen>
+    <dimen name="dimen_default_quarter">4dp</dimen>
     <dimen name="dimen_default_double">32dp</dimen>
     <dimen name="dimen_default_quadruple">64dp</dimen>
 

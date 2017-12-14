@@ -9,8 +9,6 @@ import com.andreadev.stargazerssample.R
 import com.andreadev.stargazerssample.di.components.DaggerPresenterComponent
 import com.andreadev.stargazerssample.route.RouteManager
 import com.andreadev.stargazerssample.ui.base.BaseMvpFragment
-import com.andreadev.stargazerssample.ui.splash.SplashPresenter
-import com.andreadev.stargazerssample.ui.splash.SplashView
 import javax.inject.Inject
 
 /**
@@ -59,7 +57,7 @@ class SplashFragment : BaseMvpFragment<SplashView, SplashPresenter>(), SplashVie
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     override fun navigateToHome() {
-        RouteManager.home(this)
+        RouteManager.repoList(this)
         activity.finish()
     }
 

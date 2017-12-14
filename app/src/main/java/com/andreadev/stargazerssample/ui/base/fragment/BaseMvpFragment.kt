@@ -3,14 +3,14 @@ package com.andreadev.stargazerssample.ui.base
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.widget.Toast
-import com.andreadev.stargazerssample.ui.home.HomeFragment
+import com.andreadev.stargazerssample.ui.repolist.StargazersFragment
 
 /**
  * Created by andrea on 18/08/2017.
  */
 abstract class BaseMvpFragment<in V : BaseMvpView, T : BasePresenter<V>> : Fragment(), BaseMvpView {
 
-    protected val TAG = HomeFragment::class.java.simpleName
+    protected val TAG = StargazersFragment::class.java.simpleName
 
     protected lateinit var mPresenter: T
 

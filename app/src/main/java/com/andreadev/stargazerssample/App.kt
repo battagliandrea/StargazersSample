@@ -21,7 +21,6 @@ class App : Application() {
                 .appModule(AppModule(this))
                 .apiServiceModule(ApiServiceModule())
                 .networkModule(NetworkModule())
-                .rxModule(RxModule())
                 .build()
         component.inject(this)
     }

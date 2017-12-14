@@ -1,10 +1,8 @@
 package com.andreadev.stargazerssample.di.modules
 
-import android.support.v7.view.menu.MenuPresenter
-import com.andreadev.stargazerssample.data.repository.PreferencesRepository
-import com.andreadev.stargazerssample.data.repository.RootRepository
+import com.andreadev.stargazerssample.data.repository.GithubRepository
 import com.andreadev.stargazerssample.di.PresenterScope
-import com.andreadev.stargazerssample.ui.home.HomePresenter
+import com.andreadev.stargazerssample.ui.repolist.StargazersPresenter
 import com.andreadev.stargazerssample.ui.splash.SplashPresenter
 import dagger.Module
 import dagger.Provides
@@ -22,6 +20,6 @@ class PresenterModule {
 
     @PresenterScope
     @Provides
-    fun provideHomePresenter(rootRepository: RootRepository): HomePresenter = HomePresenter(rootRepository)
+    fun provideStargazersPresenter(githubRepository: GithubRepository): StargazersPresenter = StargazersPresenter(githubRepository)
 
 }

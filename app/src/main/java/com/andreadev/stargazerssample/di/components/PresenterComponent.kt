@@ -2,7 +2,7 @@ package com.andreadev.stargazerssample.di.components
 
 import com.andreadev.stargazerssample.di.PresenterScope
 import com.andreadev.stargazerssample.di.modules.PresenterModule
-import com.andreadev.stargazerssample.ui.home.HomeFragment
+import com.andreadev.stargazerssample.ui.repolist.StargazersFragment
 import com.andreadev.stargazerssample.ui.splash.SplashFragment
 import dagger.Component
 
@@ -15,6 +15,6 @@ import dagger.Component
 interface PresenterComponent {
 
     fun inject(splashFragment: SplashFragment)
-    fun inject(homeFragment: HomeFragment)
+    fun inject(stargazersFragment: StargazersFragment)
 
 }
