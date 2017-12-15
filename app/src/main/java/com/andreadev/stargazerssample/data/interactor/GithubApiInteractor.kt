@@ -13,8 +13,8 @@ class GithubApiInteractor @Inject constructor(api: GithubApi) {
     private var mGithubApi: GithubApi = api
 
     //TODO: add compose to handle Retrofit's Result
-    fun stargazers(): Observable<List<Stargazer>> {
-        return mGithubApi.stargazers()
+    fun stargazers(page: Int): Observable<List<Stargazer>> {
+        return mGithubApi.stargazers(page)
                 .flatMap({result -> Observable.just(result.response()?.body())})
     }
 }

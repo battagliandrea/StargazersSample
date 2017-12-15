@@ -70,7 +70,7 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
 
     private val mAdapterListener: StargazersAdapter.StargazersAdapterListener = object: StargazersAdapter.StargazersAdapterListener{
         override fun onBottomReached(position: Int) {
-            Toast.makeText(activity, "Sono alla fine", Toast.LENGTH_SHORT).show()
+            mPresenter.loadStargazersList()
         }
     }
 

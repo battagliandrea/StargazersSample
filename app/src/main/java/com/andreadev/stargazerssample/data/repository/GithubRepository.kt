@@ -9,9 +9,15 @@ class GithubRepository @Inject constructor(interactor: GithubApiInteractor){
 
     private var githubApiInteractor: GithubApiInteractor = interactor
 
-    fun stargazers(): Observable<List<Stargazer>> {
-        return githubApiInteractor.stargazers()
-                .flatMap{ response -> Observable.just(response) }
+    private var stargazersData : ArrayList<Stargazer> = ArrayList()
+
+    fun stargazers(page: Int): Observable<Pair<Boolean, List<Stargazer>>  > {
+        return githubApiInteractor.stargazers(page)
+                .flatMap{ response ->
+                            stargazersData.addAll(response)
+                            var lastPage = response.size == 0
+                            return@flatMap Observable.just(Pair(lastPage, stargazersData))
+                }
     }
 
 }
