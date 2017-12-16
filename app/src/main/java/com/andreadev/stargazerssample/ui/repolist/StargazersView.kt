@@ -10,4 +10,6 @@ interface StargazersView : BaseMvpView {
 
     fun loadData(data : List<Stargazer>)
     fun rootListError()
+
+    fun validationError()
 }

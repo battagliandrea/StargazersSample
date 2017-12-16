@@ -4,6 +4,7 @@ import com.andreadev.stargazerssample.data.models.Stargazer
 import io.reactivex.Observable
 import retrofit2.adapter.rxjava2.Result
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -12,8 +13,11 @@ import retrofit2.http.Query
 
 interface GithubApi {
 
-    @GET("repos/Haegon/ParallaxViewPager/stargazers")
-    fun stargazers(@Query("page") page: Int): Observable<Result<List<Stargazer>>>
+    @GET("repos/{owner}/{repo}/stargazers")
+    fun stargazers(
+            @Path("owner") owner: String?,
+            @Path("repo") repo: String?,
+            @Query("page") page: Int): Observable<Result<List<Stargazer>>>
 }
 
 

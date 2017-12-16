@@ -6,4 +6,7 @@
     <string name="hint_owner">Owner (Es: evernote)</string>
     <string name="hint_repo">Repository (Es: android-state)</string>
 
+    <!-- ERRORS -->
+    <string name="validation_error">Insert wwner and repository name</string>
+
 </resources>

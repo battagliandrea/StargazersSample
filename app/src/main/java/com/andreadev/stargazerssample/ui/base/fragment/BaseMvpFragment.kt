@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.widget.Toast
 import com.andreadev.stargazerssample.ui.repolist.StargazersFragment
+import com.andreadev.stargazerssample.ui.utils.UiUtils
 import com.evernote.android.state.State
 import com.evernote.android.state.StateSaver
 
@@ -34,21 +35,33 @@ abstract class BaseMvpFragment<in V : BaseMvpView, T : BasePresenter<V>> : Fragm
         mPresenter.detachView()
     }
 
-    protected abstract fun instancePresenter(): T
-
-    override fun showError(error: String?) {
-        Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+    override fun isAttached(): Boolean {
+        return isAdded
     }
 
-    override fun showMessage(message: String) {
-        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+    protected abstract fun instancePresenter(): T
+
+    override fun showError(errorMessage: String?) {
+        if(isAttached()){
+            UiUtils.showError(activity, errorMessage!!)
+        }
+    }
+
+    override fun showError(throwable: Throwable) {
+        /*if(isAttached()){
+            UiUtils.showError(activity, throwable)
+        }*/
     }
 
     override fun showLoading() {
-        (activity as BaseActivity).showLoading()
+        if(isAttached()){
+            (activity as BaseActivity).showLoading()
+        }
     }
 
     override fun hideLoading() {
-        (activity as BaseActivity).hideLoading()
+        if(isAttached()){
+            (activity as BaseActivity).hideLoading()
+        }
     }
 }

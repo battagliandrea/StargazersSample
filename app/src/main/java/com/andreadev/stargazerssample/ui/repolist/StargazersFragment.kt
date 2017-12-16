@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.andreadev.stargazerssample.App
 import com.andreadev.stargazerssample.R
+import com.andreadev.stargazerssample.R.id.*
 import com.andreadev.stargazerssample.data.models.Stargazer
 import com.andreadev.stargazerssample.di.components.DaggerFragmentComponent
 import com.andreadev.stargazerssample.ui.base.BaseMvpFragment
@@ -61,15 +62,10 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
         adapter = StargazersAdapter(activity, mAdapterListener)
         rv.layoutManager = LinearLayoutManager(activity)
         rv.adapter = adapter
-    }
 
-    override fun onResume() {
-        super.onResume()
+        setupListener()
 
-        if(mListState!=null){
-            mPresenter.loadData(false, false)
-        }
-
+        mPresenter.resumeData()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -80,19 +76,29 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
     private fun restoreListState(){
         if(mListState!=null){
             rv.layoutManager.onRestoreInstanceState(mListState)
-            mListState!=null
+            mListState=null
         }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
-    //                                              ADAPTER LISTENER
+    //                                              LISTENER
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private fun setupListener(){
+        send_btn.setOnClickListener({
+            mPresenter.startSearch(
+                    et_owner.text.toString(),
+                    et_repo.text.toString()
+            )
+        })
+    }
+
+
     private val mAdapterListener: StargazersAdapter.StargazersAdapterListener = object: StargazersAdapter.StargazersAdapterListener{
         override fun onBottomReached(position: Int) {
-            mPresenter.loadData(true, false)
+            mPresenter.loadMore()
         }
     }
 
@@ -107,6 +113,10 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
     }
 
     override fun rootListError() {
-        Toast.makeText(activity, "ERRORE!", Toast.LENGTH_SHORT).show()
+        showError("ERRORE DA GESTIRE")
+    }
+
+    override fun validationError() {
+        showError(activity.getString(R.string.validation_error))
     }
 }

@@ -5,8 +5,10 @@ package com.andreadev.stargazerssample.ui.base
 
 interface BaseMvpView {
 
-    fun showError(error: String?)
-    fun showMessage(message: String)
+    fun isAttached() : Boolean
+
+    fun showError(string: String?)
+    fun showError(throwable: Throwable)
 
     fun showLoading()
     fun hideLoading()

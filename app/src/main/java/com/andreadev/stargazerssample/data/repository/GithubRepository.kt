@@ -2,6 +2,7 @@ package com.andreadev.stargazerssample.data.repository
 
 import com.andreadev.stargazerssample.data.interactor.GithubApiInteractor
 import com.andreadev.stargazerssample.data.models.Stargazer
+import com.andreadev.stargazerssample.data.models.StargazerRequest
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,32 +12,32 @@ class GithubRepository{
 
     private var githubApiInteractor: GithubApiInteractor
 
-    private var mCurrentPage: Int = 1
-    private var isLastPage: Boolean = false
-    private var stargazersData : ArrayList<Stargazer>
+    private var stargazersData : ArrayList<Stargazer> = ArrayList()
+    private var repoData : StargazerRequest? = null
 
     @Inject constructor(interactor: GithubApiInteractor){
         githubApiInteractor = interactor
-        stargazersData = ArrayList()
     }
 
-    fun stargazers(loadMore: Boolean, forceRefresh: Boolean): Observable<List<Stargazer>> {
+    fun stargazers(req: StargazerRequest?, page: Int, forceRefresh: Boolean): Observable<Pair<Boolean, List<Stargazer>>> {
 
-        if(!loadMore && !forceRefresh){
-            return Observable.just(stargazersData)
-        } else if(loadMore){
-            mCurrentPage += 1
-        } else {
-            mCurrentPage = 1
-            isLastPage = false
+        if(forceRefresh){
+            repoData = req
+            stargazersData = ArrayList()
         }
 
-        return githubApiInteractor.stargazers(mCurrentPage)
+        return githubApiInteractor.stargazers(repoData, page)
                 .flatMap{ response ->
                     stargazersData.addAll(response)
-                    isLastPage = response.isEmpty()
-                    return@flatMap Observable.just(stargazersData)
+
+                    var isLastPage = response.isEmpty()
+                    return@flatMap Observable.just(Pair(isLastPage, stargazersData))
                 }
+    }
+
+
+    fun getCachedStargazers(): Observable<List<Stargazer>> {
+        return Observable.just(stargazersData)
     }
 
 }
