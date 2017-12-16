@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.widget.Toast
 import com.andreadev.stargazerssample.ui.repolist.StargazersFragment
+import com.evernote.android.state.State
 import com.evernote.android.state.StateSaver
 
 /**

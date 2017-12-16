@@ -15,9 +15,9 @@ class StargazersPresenter(val githubRepository: GithubRepository) : BaseMvpPrese
 
     private val TAG = StargazersPresenter::class.java.simpleName
 
-    fun resumeData() {
+    fun loadData(loadMore: Boolean, forceRefresh: Boolean) {
         mView?.showLoading()
-        Observable.just(githubRepository.stargazers()
+        Observable.just(githubRepository.stargazers(loadMore, forceRefresh)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -31,11 +31,9 @@ class StargazersPresenter(val githubRepository: GithubRepository) : BaseMvpPrese
                             mView?.hideLoading()
                         })
         )
-
-
     }
 
-    fun loadMore(){
+    fun loadMoreData(){
 
     }
 }

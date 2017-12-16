@@ -3,7 +3,6 @@ package com.andreadev.stargazerssample.ui.repolist
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,7 +65,11 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
 
     override fun onResume() {
         super.onResume()
-        mPresenter.resumeData()
+
+        if(mListState!=null){
+            mPresenter.loadData(false, false)
+        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -89,7 +92,7 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
 
     private val mAdapterListener: StargazersAdapter.StargazersAdapterListener = object: StargazersAdapter.StargazersAdapterListener{
         override fun onBottomReached(position: Int) {
-            mPresenter.loadMore()
+            mPresenter.loadData(true, false)
         }
     }
 

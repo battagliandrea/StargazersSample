@@ -19,7 +19,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private val FRAGMENT_TAG : String = "ROOT FRAGMENT"
 
-    private lateinit var mFragment: Fragment;
+    private lateinit var mFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

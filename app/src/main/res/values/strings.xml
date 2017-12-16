@@ -3,6 +3,7 @@
     <string name="splash_title">Stargazers</string>
 
     <!--HOME-->
-    <string name="home_title">Home View</string>
+    <string name="hint_owner">Owner (Es: evernote)</string>
+    <string name="hint_repo">Repository (Es: android-state)</string>
 
 </resources>

@@ -11,7 +11,7 @@ class GithubRepository{
 
     private var githubApiInteractor: GithubApiInteractor
 
-    private var mCurrentPage: Int = 0
+    private var mCurrentPage: Int = 1
     private var isLastPage: Boolean = false
     private var stargazersData : ArrayList<Stargazer>
 
@@ -20,18 +20,23 @@ class GithubRepository{
         stargazersData = ArrayList()
     }
 
-    fun stargazers(): Observable<List<Stargazer>> {
-        if(stargazersData.isEmpty()){
-            mCurrentPage += 1
-            return githubApiInteractor.stargazers(1)
-                    .flatMap{ response ->
-                        stargazersData.addAll(response)
-                        isLastPage = response.isEmpty()
-                        return@flatMap Observable.just(stargazersData)
-                    }
-        } else {
+    fun stargazers(loadMore: Boolean, forceRefresh: Boolean): Observable<List<Stargazer>> {
+
+        if(!loadMore && !forceRefresh){
             return Observable.just(stargazersData)
+        } else if(loadMore){
+            mCurrentPage += 1
+        } else {
+            mCurrentPage = 1
+            isLastPage = false
         }
+
+        return githubApiInteractor.stargazers(mCurrentPage)
+                .flatMap{ response ->
+                    stargazersData.addAll(response)
+                    isLastPage = response.isEmpty()
+                    return@flatMap Observable.just(stargazersData)
+                }
     }
 
 }
