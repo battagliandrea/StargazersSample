@@ -10,4 +10,4 @@ import javax.inject.Scope
 
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-annotation class PresenterScope
+annotation class FragmentScope

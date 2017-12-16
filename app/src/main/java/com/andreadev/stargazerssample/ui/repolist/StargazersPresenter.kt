@@ -15,31 +15,27 @@ class StargazersPresenter(val githubRepository: GithubRepository) : BaseMvpPrese
 
     private val TAG = StargazersPresenter::class.java.simpleName
 
-    private var mCurrentPage: Int = 0
-    private var isLastPage: Boolean = false
+    fun resumeData() {
+        mView?.showLoading()
+        Observable.just(githubRepository.stargazers()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { data ->
+                            getView()?.loadData(data)
+                            mView?.hideLoading()
+                        },
+                        { error ->
+                            error.printStackTrace()
+                            getView()?.rootListError()
+                            mView?.hideLoading()
+                        })
+        )
 
-    open fun loadStargazersList() {
-        mCurrentPage += 1
-        if(!isLastPage){
-            mView?.showLoading()
-            Observable.just(githubRepository.stargazers(mCurrentPage)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext { pair ->
-                        isLastPage = pair.first
-                        getView()?.loadData(pair.second)
-                    }
-                    .subscribe(
-                            { pair ->
-                                mView?.hideLoading()
-                            },
-                            { error ->
-                                error.printStackTrace()
-                                getView()?.rootListError()
-                                mView?.hideLoading()
-                            })
-            )
-        }
+
+    }
+
+    fun loadMore(){
 
     }
 }

@@ -3,10 +3,13 @@ package com.andreadev.stargazerssample.data.repository
 import android.content.SharedPreferences
 
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by andrea on 23/04/17.
  */
+
+@Singleton
 class PreferencesRepository @Inject constructor(sp: SharedPreferences) {
 
     private var mSharedPreferences : SharedPreferences = sp

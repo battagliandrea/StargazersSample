@@ -8,6 +8,6 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        replaceFragment(SplashFragment.newIstance())
+        replaceFragment(savedInstanceState, SplashFragment.newIstance())
     }
 }

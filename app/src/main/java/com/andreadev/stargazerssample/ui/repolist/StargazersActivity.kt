@@ -14,6 +14,6 @@ class StargazersActivity : BaseToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        replaceFragment(StargazersFragment.newIstance())
+        replaceFragment(savedInstanceState, StargazersFragment.newIstance())
     }
 }

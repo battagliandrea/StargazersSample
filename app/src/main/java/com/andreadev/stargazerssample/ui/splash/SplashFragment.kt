@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.andreadev.stargazerssample.App
 import com.andreadev.stargazerssample.R
-import com.andreadev.stargazerssample.di.components.DaggerPresenterComponent
+import com.andreadev.stargazerssample.di.components.DaggerFragmentComponent
 import com.andreadev.stargazerssample.route.RouteManager
 import com.andreadev.stargazerssample.ui.base.BaseMvpFragment
 import javax.inject.Inject
@@ -30,7 +30,7 @@ class SplashFragment : BaseMvpFragment<SplashView, SplashPresenter>(), SplashVie
     }
 
     init {
-        DaggerPresenterComponent.builder().appComponent(App.component).build().inject(this)
+        DaggerFragmentComponent.builder().appComponent(App.component).build().inject(this)
     }
 
     override fun instancePresenter(): SplashPresenter = splashPresenter

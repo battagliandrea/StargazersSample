@@ -35,6 +35,10 @@ dependencies {
     compile "com.facebook.stetho:stetho:$stetho_version"
     compile "com.facebook.stetho:stetho-okhttp3:$stetho_version"
 
+    //ICE PICK
+    compile "com.evernote:android-state:$evernote_state_version"
+    kapt "com.evernote:android-state-processor:$evernote_state_version"
+
     testCompile 'junit:junit:4.12'
 }
 
