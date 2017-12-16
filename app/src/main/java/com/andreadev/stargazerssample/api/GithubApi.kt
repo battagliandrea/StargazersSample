@@ -17,7 +17,7 @@ interface GithubApi {
     fun stargazers(
             @Path("owner") owner: String?,
             @Path("repo") repo: String?,
-            @Query("page") page: Int): Observable<Result<List<Stargazer>>>
+            @Query("page") page: Int): Observable<List<Stargazer>>
 }
 
 

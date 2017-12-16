@@ -51,7 +51,7 @@ class StargazersPresenter(val githubRepository: GithubRepository) : BaseMvpPrese
                         },
                         { error ->
                             error.printStackTrace()
-                            getView()?.rootListError()
+                            getView()?.rootListError(error)
                             mView?.hideLoading()
                         })
     }
@@ -68,7 +68,7 @@ class StargazersPresenter(val githubRepository: GithubRepository) : BaseMvpPrese
                         },
                         { error ->
                             error.printStackTrace()
-                            getView()?.rootListError()
+                            getView()?.rootListError(error)
                             mView?.hideLoading()
                         })
     }

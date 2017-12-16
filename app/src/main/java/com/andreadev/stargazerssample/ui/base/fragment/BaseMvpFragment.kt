@@ -48,9 +48,9 @@ abstract class BaseMvpFragment<in V : BaseMvpView, T : BasePresenter<V>> : Fragm
     }
 
     override fun showError(throwable: Throwable) {
-        /*if(isAttached()){
+        if(isAttached()){
             UiUtils.showError(activity, throwable)
-        }*/
+        }
     }
 
     override fun showLoading() {

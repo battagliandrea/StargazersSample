@@ -112,8 +112,8 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
         restoreListState()
     }
 
-    override fun rootListError() {
-        showError("ERRORE DA GESTIRE")
+    override fun rootListError(throwable: Throwable) {
+        showError(throwable)
     }
 
     override fun validationError() {

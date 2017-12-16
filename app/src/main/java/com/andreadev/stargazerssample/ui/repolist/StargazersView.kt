@@ -9,7 +9,7 @@ import com.andreadev.stargazerssample.ui.base.BaseMvpView
 interface StargazersView : BaseMvpView {
 
     fun loadData(data : List<Stargazer>)
-    fun rootListError()
+    fun rootListError(throwable: Throwable)
 
     fun validationError()
 }
