@@ -36,7 +36,7 @@ class StargazersPresenter(val githubRepository: GithubRepository) : BaseMvpPrese
         }
     }
 
-    private fun loadStargazers(observable: Observable<Pair<Boolean, List<Stargazer>>>) {
+    private fun loadStargazers(observable: Observable<Pair<Boolean, ArrayList<Stargazer>>>) {
         mView?.showLoading()
         observable
                 .subscribeOn(Schedulers.newThread())

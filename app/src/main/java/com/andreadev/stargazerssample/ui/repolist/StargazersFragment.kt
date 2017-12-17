@@ -6,10 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.andreadev.stargazerssample.App
 import com.andreadev.stargazerssample.R
-import com.andreadev.stargazerssample.R.id.*
 import com.andreadev.stargazerssample.data.models.Stargazer
 import com.andreadev.stargazerssample.di.components.DaggerFragmentComponent
 import com.andreadev.stargazerssample.ui.base.BaseMvpFragment
@@ -47,7 +45,7 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private lateinit var adapter : StargazersAdapter
+    private lateinit var mAdapter: StargazersAdapter
 
     @State
     var mListState: Parcelable? = null
@@ -59,9 +57,9 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = StargazersAdapter(activity, mAdapterListener)
+        mAdapter = StargazersAdapter(activity, mAdapterListener)
         rv.layoutManager = LinearLayoutManager(activity)
-        rv.adapter = adapter
+        rv.adapter = mAdapter
 
         setupListener()
 
@@ -88,6 +86,7 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
 
     private fun setupListener(){
         send_btn.setOnClickListener({
+            mAdapter.clearData()
             mPresenter.startSearch(
                     et_owner.text.toString(),
                     et_repo.text.toString()
@@ -107,8 +106,8 @@ class StargazersFragment : BaseMvpFragment<StargazersView, StargazersPresenter>(
     //                                                  VIEW
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    override fun loadData(data: List<Stargazer>) {
-        adapter.setData(data)
+    override fun loadData(data: ArrayList<Stargazer>) {
+        mAdapter.setData(data)
         restoreListState()
     }
 

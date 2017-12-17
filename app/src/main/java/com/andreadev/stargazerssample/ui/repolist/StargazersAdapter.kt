@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.view_stargazers_item.view.*
  */
 class StargazersAdapter(val context: Context, val listener: StargazersAdapterListener) : RecyclerView.Adapter<StargazersAdapter.ViewHolder>(){
 
-    private var items: List<Stargazer>
+    private var items: ArrayList<Stargazer>
     private val mListener : StargazersAdapterListener = listener
 
     init {
@@ -41,8 +41,13 @@ class StargazersAdapter(val context: Context, val listener: StargazersAdapterLis
 
     override fun getItemCount() = items.size
 
-    fun setData(items: List<Stargazer>) {
+    fun setData(items: ArrayList<Stargazer>) {
         this.items = items
+        notifyDataSetChanged()
+    }
+
+    fun clearData(){
+        items.clear()
         notifyDataSetChanged()
     }
 

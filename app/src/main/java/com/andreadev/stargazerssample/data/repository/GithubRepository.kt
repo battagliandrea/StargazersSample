@@ -19,7 +19,7 @@ class GithubRepository{
         githubApiInteractor = interactor
     }
 
-    fun stargazers(req: StargazerRequest?, page: Int, forceRefresh: Boolean): Observable<Pair<Boolean, List<Stargazer>>> {
+    fun stargazers(req: StargazerRequest?, page: Int, forceRefresh: Boolean): Observable<Pair<Boolean, ArrayList<Stargazer>>> {
 
         if(forceRefresh){
             repoData = req
@@ -36,7 +36,7 @@ class GithubRepository{
     }
 
 
-    fun getCachedStargazers(): Observable<List<Stargazer>> {
+    fun getCachedStargazers(): Observable<ArrayList<Stargazer>> {
         return Observable.just(stargazersData)
     }
 
