@@ -69,4 +69,8 @@ ext {
 
     //ICE PICK
     evernote_state_version = '1.1.6'
+
+    //ESPRESSO
+    espresso_version = '3.0.1'
+    test_runner_version = '1.0.1'
 }

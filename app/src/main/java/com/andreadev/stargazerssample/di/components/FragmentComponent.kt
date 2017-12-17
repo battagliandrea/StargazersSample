@@ -16,5 +16,4 @@ interface FragmentComponent {
 
     fun inject(splashFragment: SplashFragment)
     fun inject(stargazersFragment: StargazersFragment)
-
 }

@@ -4,7 +4,6 @@ import android.app.Application
 import com.andreadev.stargazerssample.di.components.AppComponent
 import com.andreadev.stargazerssample.di.components.DaggerAppComponent
 import com.andreadev.stargazerssample.di.modules.*
-import com.facebook.stetho.Stetho
 
 /**
  * Created by andrea on 26/08/2017.
