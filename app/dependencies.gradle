@@ -34,14 +34,9 @@ dependencies {
     compile "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
-    //ICE PICK
+    //ICE PICK EVERNOTE
     compile "com.evernote:android-state:$evernote_state_version"
     kapt "com.evernote:android-state-processor:$evernote_state_version"
-
-    //MOCKITO
-    debugCompile 'org.mockito:mockito-core:2.7.17'
-    debugCompile "com.google.dexmaker:dexmaker:1.2"
-    debugCompile "com.linkedin.dexmaker:dexmaker-mockito:2.2.0"
 
     //ESPRESSO
     androidTestCompile "com.android.support.test.espresso:espresso-core:$espresso_version"
