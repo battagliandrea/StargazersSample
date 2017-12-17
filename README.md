@@ -35,10 +35,10 @@ or execute the following Gradle command:
    
 - ./gradlew connectedAndroidTest
 
-#Support 
+# Support 
 
 You can write me to [battaglia.andry@gmail.com](battaglia.andry@gmail.com)
 
-#License
+# License
 
 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
